@@ -30,10 +30,13 @@ typedef struct s_index{
 
 //mapChecks.c
 int validCharacters(t_mapInfo *mapInfo);
-int validMapExtention(char *mapName);
+void validMapExtention(char *mapName);
 
 //mapInfos.c
 int openMap(char *mapName);
 void initMapInfo(t_mapInfo *info, char *mapName);
+void addMapInfos(char **split, t_mapInfo *mapInfo);
+int getMapInfo(t_mapInfo *mapInfo);
+
 
 #endif

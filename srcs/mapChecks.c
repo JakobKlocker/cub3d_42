@@ -21,10 +21,12 @@ int validCharacters(t_mapInfo *mapInfo)
     return 1;
 }
 
-int validMapExtention(t_mapInfo *mapInfo)
+void validMapExtention(char *mapName)
 {
-    int mapNameLenght = ft_strlen(mapInfo->mapName);
-    if(mapNameLenght < 4 || ft_strcmp(mapInfo->mapName[mapNameLenght - 4], ".cub") != 0)
-        return 0;
-    return 1;
+    int mapNameLenght = ft_strlen(mapName);
+    if(mapNameLenght < 4 || ft_strncmp(&mapName[mapNameLenght - 4], ".cub", 4) != 0)
+    {
+        ft_printf("Map name invalid, must end with .cub\n");
+        exit(1);
+    }
 }

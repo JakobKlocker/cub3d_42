@@ -11,5 +11,6 @@ int main(int argc, char **argv)
     }
     initMapInfo(&mapInfo, argv[1]);
     validMapExtention(mapInfo.mapName);
-    openMap(mapInfo.mapName);
+    mapInfo.Fd = openMap(mapInfo.mapName);
+    getMapInfo(&mapInfo);
 }
