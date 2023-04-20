@@ -1,5 +1,7 @@
 #include "../includes/cub3d.h"
 
+int getLenTillChar(char* line, char c);
+
 int openMap(char *mapName)
 {
     int Fd;
@@ -44,9 +46,29 @@ void addMapInfos(char **split, t_mapInfo *mapInfo)
     //free split here
 }
 
+
+
+
+
+
+
+
 void addMap(t_mapInfo *mapInfo)
 {
-
+    t_index index;
+    mapInfo->map1D = malloc1D(mapInfo);
+    index.i = 0;
+    index.j = 0;
+    while(mapInfo->map1D[index.i])
+    {
+        if(mapInfo->map1D[index.i] == '\n')
+            index.j++;
+        index.i++;
+    }
+    mapInfo->height = index.j;
+    mapInfo->map2D = malloc2D(mapInfo);
+    copy2DMap(mapInfo);
+    print2DMap(mapInfo);
 }
 
 int getMapInfo(t_mapInfo *mapInfo)
@@ -67,8 +89,7 @@ int getMapInfo(t_mapInfo *mapInfo)
         }
         line = get_next_line(mapInfo->Fd);
     }
-    while(line && line[0] == '\0')
-        line = get_next_line(mapInfo->Fd);
+    free(line);
     addMap(mapInfo);
 }
 
@@ -77,7 +98,8 @@ void initMapInfo(t_mapInfo *mapInfo, char *mapName)
     mapInfo->mapName = mapName;
     mapInfo->Fd = 0;
     mapInfo->height = 0;
-    mapInfo->map  = NULL;
+    mapInfo->map1D  = NULL;
+    mapInfo->map2D  = NULL;
     mapInfo->NTexture = NULL;
     mapInfo->ETexture = NULL;
     mapInfo->STexture = NULL;

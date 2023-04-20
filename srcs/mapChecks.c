@@ -10,7 +10,7 @@ int validCharacters(t_mapInfo *mapInfo)
         index.j = 0;
         while(index.j != '\0')
         {
-            char cur = mapInfo->map[index.i][index.j];
+            char cur = mapInfo->map2D[index.i][index.j];
             if(cur != '0' && cur != '1' && cur != 'N' 
                 && cur != 'E' && cur != 'S' && cur != 'W' && cur != ' ')
                 return 0;
