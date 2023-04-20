@@ -21,9 +21,7 @@ void addMapInfos(char **split, t_mapInfo *mapInfo)
     while(split[index.i])
         index.i++;
     if(index.i != 2)
-    {
-        //free, error & exit here
-    }
+        ft_printf("Error and Free here\n");
     if(strncmp(split[0], "NO\0", 3) == 0)
         mapInfo->NTexture = ft_strdup(split[1]);
     else if(strncmp(split[0], "SO\0", 3) == 0)
@@ -33,12 +31,12 @@ void addMapInfos(char **split, t_mapInfo *mapInfo)
     else if(strncmp(split[0], "EA\0", 3) == 0)
         mapInfo->ETexture = ft_strdup(split[1]);
     else if(strncmp(split[0], "F\0", 2) == 0)
-        mapInfo->FColor = ft_strdup(split[1]);
+        mapInfo->FColor = ft_split(split[1], ',');
     else if(strncmp(split[0], "C\0", 2) == 0)
-        mapInfo->CColor = ft_strdup(split[1]);
+        mapInfo->CColor = ft_split(split[1], ',');
     else
     {
-        ft_printf("Error, free & exit here\n");
+        ft_printf("addMapInfos Error, free & exit here\n");
         exit(1);
     }
     //free split here

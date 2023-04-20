@@ -13,4 +13,5 @@ int main(int argc, char **argv)
     validMapExtention(mapInfo.mapName);
     mapInfo.Fd = openMap(mapInfo.mapName);
     getMapInfo(&mapInfo);
+    allMapChecks(&mapInfo);
 }
