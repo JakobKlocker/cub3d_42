@@ -1,7 +1,5 @@
 #include "../includes/cub3d.h"
 
-int getLenTillChar(char* line, char c);
-
 int openMap(char *mapName)
 {
     int Fd;
@@ -45,13 +43,6 @@ void addMapInfos(char **split, t_mapInfo *mapInfo)
     }
     //free split here
 }
-
-
-
-
-
-
-
 
 void addMap(t_mapInfo *mapInfo)
 {
