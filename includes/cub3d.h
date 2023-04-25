@@ -129,4 +129,10 @@ void prepDDA(t_mapInfo *mapInfo, t_player *player);
 void drawLine(t_mapInfo *mapInfo, int x, int drawStart, int drawEnd);
 
 
+//createBG.c
+int encodeRGB(unsigned char red, unsigned char green, unsigned char blue);
+void createFloor(t_mapInfo *mapInfo);
+void createSky(t_mapInfo *mapInfo);
+void createBG(t_mapInfo *mapInfo);
+
 #endif

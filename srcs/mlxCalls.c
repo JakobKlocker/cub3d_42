@@ -2,8 +2,8 @@
 
 void openWindow(t_mapInfo *mapInfo)
 {
-    mapInfo->screen.height = 1240;
-    mapInfo->screen.width = 1080;
+    mapInfo->screen.height = 1080;
+    mapInfo->screen.width = 1240;
 	mapInfo->mlx.mlx = mlx_init();
 	mapInfo->mlx.win = mlx_new_window(mapInfo->mlx.mlx, mapInfo->screen.width, mapInfo->screen.height, "cube3d plz");
 }

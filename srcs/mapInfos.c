@@ -68,9 +68,13 @@ int getMapInfo(t_mapInfo *mapInfo)
     index.i = 0;
     index.j = 0;
     char *line = get_next_line(mapInfo->Fd);
+    if(!line)
+        ft_printf("Error and Free here\n");
     while(line && index.j < 6)
     {
         split = ft_split(line, ' ');
+        if(line)
+            free(line);
         if(split)
         {
             index.j++;
@@ -78,7 +82,6 @@ int getMapInfo(t_mapInfo *mapInfo)
         }
         line = get_next_line(mapInfo->Fd);
     }
-    free(line);
     addMap(mapInfo);
 }
 

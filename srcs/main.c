@@ -17,5 +17,6 @@ int main(int argc, char **argv)
     allMapChecks(&mapInfo);
     getPlayerCordinates(&mapInfo, &player);
     openWindow(&mapInfo);
+    createBG(&mapInfo);
     DDA(&mapInfo, &player);
 }

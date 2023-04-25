@@ -54,8 +54,8 @@ void rayDist(t_mapInfo *mapInfo, t_player *player, t_rayCamInfo *rayInfo)
         rayInfo->perpWallDist = rayInfo->sideDistY - rayInfo->deltaDistY;
     
     rayInfo->lineHeight = (int)(mapInfo->screen.height / rayInfo->perpWallDist);
-    // if(rayInfo->perpWallDist == 0)
-    //     rayInfo->lineHeight = 1240;
+    if(rayInfo->perpWallDist == 0)
+        rayInfo->lineHeight = 1240;
     rayInfo->drawStart = -rayInfo->lineHeight / 2 + mapInfo->screen.height / 2;
     rayInfo->drawEnd = rayInfo->lineHeight / 2 + mapInfo->screen.height / 2;
 
@@ -107,7 +107,21 @@ void DDA(t_mapInfo *mapInfo, t_player *player)
         x++;
     }
 } 
+
+
+void drawLine(t_mapInfo *mapInfo, int x, int drawStart, int drawEnd)
+{
+    while(drawStart != drawEnd)
+    {
+        mlx_pixel_put(mapInfo->mlx.mlx, mapInfo->mlx.win, x, drawStart, 0xFF0000);
+        drawStart++;
+    }
+}
+
+
       
+
+
 
 
 //Test to understand
@@ -196,12 +210,3 @@ void DDA(t_mapInfo *mapInfo, t_player *player)
 //         x++;
 //     }
 // }
-
-void drawLine(t_mapInfo *mapInfo, int x, int drawStart, int drawEnd)
-{
-    while(drawStart != drawEnd)
-    {
-        mlx_pixel_put(mapInfo->mlx.mlx, mapInfo->mlx.win, x, drawStart, 0xFF0000);
-        drawStart++;
-    }
-}
