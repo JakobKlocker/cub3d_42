@@ -40,7 +40,7 @@ void isRGB(char *str)
 
 void allMapChecks(t_mapInfo *mapInfo)
 {
-    WallCheck(mapInfo);
+    wallCheck(mapInfo);
     colorCheck(mapInfo);
     validCharacters(mapInfo);
 }

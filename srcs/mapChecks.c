@@ -18,7 +18,6 @@ void validCharacters(t_mapInfo *mapInfo)
         }
         index.i++;
     }
-    return 1;
 }
 
 void validMapExtention(char *mapName)

@@ -3,6 +3,7 @@
 int main(int argc, char **argv)
 {
     t_mapInfo mapInfo;
+    t_player player;
 
     if(argc != 2)
     {
@@ -14,4 +15,7 @@ int main(int argc, char **argv)
     mapInfo.Fd = openMap(mapInfo.mapName);
     getMapInfo(&mapInfo);
     allMapChecks(&mapInfo);
+    getPlayerCordinates(&mapInfo, &player);
+    openWindow(&mapInfo);
+    DDA(&mapInfo, &player);
 }
