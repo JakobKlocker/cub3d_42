@@ -11,31 +11,31 @@ void colorCheck(t_mapInfo *mapInfo)
     while(mapInfo->FColor[index.j])
         index.j++;
     if(index.i != 3 || index.j != 3)
-        ft_printf("colorChecks Error and free");
+        error("RGB", mapInfo);
     index.i = 0;
     while(index.i < 3)
     {
-        isRGB(mapInfo->CColor[index.i]);
-        isRGB(mapInfo->FColor[index.i]);
+        isRGB(mapInfo->CColor[index.i], mapInfo);
+        isRGB(mapInfo->FColor[index.i], mapInfo);
         index.i++;
     }
 }
 
-void isRGB(char *str)
+void isRGB(char *str, t_mapInfo *mapInfo)
 {
     int i = 0;
 
     if(ft_strlen(str) > 3)
-        ft_printf("isRGB Error and free");
+        error("RGB", mapInfo);
     while(str[i])
     {
         if(!ft_isdigit(str[i]))
-            ft_printf("isRGB Error and free");
+            error("RGB", mapInfo);
         i++;
     }
     i = ft_atoi(str);
     if(i > 255 || i < 0)
-        ft_printf("isRGB Error and free");
+        error("RGB", mapInfo);
 }
 
 void allMapChecks(t_mapInfo *mapInfo)

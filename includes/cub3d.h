@@ -100,18 +100,18 @@ void print2DMap(t_mapInfo *mapInfo);
 
 //mapChecks.c
 void validCharacters(t_mapInfo *mapInfo);
-void validMapExtention(char *mapName);
+void validMapExtention(char *mapName, t_mapInfo *mapInfo);
 void wallTopBottom(t_mapInfo *mapInfo);
 void wallCheck(t_mapInfo *mapInfo);
-void wallCheckSurrounding(char **map2D, t_index *index);
+void wallCheckSurrounding(char **map2D, t_index *index, t_mapInfo *mapInfo);
 
 //mapChecks_1.c
 void colorCheck(t_mapInfo *mapInfo);
-void isRGB(char *str);
+void isRGB(char *str, t_mapInfo *mapInfo);
 void allMapChecks(t_mapInfo *mapInfo);
 
 //mapInfos.c
-int openMap(char *mapName);
+int openMap(char *mapName, t_mapInfo *mapInfo);
 void addMapInfos(char **split, t_mapInfo *mapInfo);
 void addMap(t_mapInfo *mapInfo);
 int getMapInfo(t_mapInfo *mapInfo);
@@ -134,5 +134,13 @@ int encodeRGB(unsigned char red, unsigned char green, unsigned char blue);
 void createFloor(t_mapInfo *mapInfo);
 void createSky(t_mapInfo *mapInfo);
 void createBG(t_mapInfo *mapInfo);
+
+//errorFree.c
+void free2D(char **str);
+void error(char *error, t_mapInfo *mapInfo);
+void freeMlx(t_mapInfo *mapInfo);
+void freeExit(t_mapInfo *mapInfo);
+
+
 
 #endif
