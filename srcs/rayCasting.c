@@ -55,7 +55,7 @@ void rayDist(t_mapInfo *mapInfo, t_player *player, t_rayCamInfo *rayInfo)
     
     rayInfo->lineHeight = (int)(mapInfo->screen.height / rayInfo->perpWallDist);
     if(rayInfo->perpWallDist == 0)
-        rayInfo->lineHeight = 1240;
+        rayInfo->lineHeight = 1080;
     rayInfo->drawStart = -rayInfo->lineHeight / 2 + mapInfo->screen.height / 2;
     rayInfo->drawEnd = rayInfo->lineHeight / 2 + mapInfo->screen.height / 2;
 
