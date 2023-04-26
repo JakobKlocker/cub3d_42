@@ -11,8 +11,8 @@ int main(int argc, char **argv)
         return 1;
     }
     initMapInfo(&mapInfo, argv[1]);
-    validMapExtention(mapInfo.mapName);
-    mapInfo.Fd = openMap(mapInfo.mapName);
+    validMapExtention(mapInfo.mapName, &mapInfo);
+    mapInfo.Fd = openMap(mapInfo.mapName, &mapInfo);
     getMapInfo(&mapInfo);
     allMapChecks(&mapInfo);
     getPlayerCordinates(&mapInfo, &player);

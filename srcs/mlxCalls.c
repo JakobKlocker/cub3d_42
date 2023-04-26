@@ -5,7 +5,11 @@ void openWindow(t_mapInfo *mapInfo)
     mapInfo->screen.height = 1080;
     mapInfo->screen.width = 1240;
 	mapInfo->mlx.mlx = mlx_init();
+    if(!mapInfo->mlx.mlx)
+        error("mlx", mapInfo);
 	mapInfo->mlx.win = mlx_new_window(mapInfo->mlx.mlx, mapInfo->screen.width, mapInfo->screen.height, "cube3d plz");
+    if(!mapInfo->mlx.win)
+        error("mlx", mapInfo);
 }
 
 // int	move_hook(int key, t_map *map_info)

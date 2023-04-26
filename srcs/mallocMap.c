@@ -2,10 +2,17 @@
 
 char *malloc1D(t_mapInfo *mapInfo)
 {
-    char *ret = calloc(1, 1);
+    char *ret;
     char *tmp;
-    char *line = get_next_line(mapInfo->Fd);
-    while(*line == '\0')
+    char *line;
+
+    ret = calloc(1, 1);
+    if(!ret)
+        error("malloc", mapInfo);
+    line = get_next_line(mapInfo->Fd);
+    if(!line)
+        error("malloc", mapInfo);
+    while(line && *line == '\0')
     {
         free(line);
         line = get_next_line(mapInfo->Fd);
@@ -18,10 +25,10 @@ char *malloc1D(t_mapInfo *mapInfo)
                 free(tmp);
             tmp = ret;
             ret = ft_strjoin(ret, "\n");
-                if(tmp)
-            free(tmp);
-        free(line);
-        line = get_next_line(mapInfo->Fd);
+            if(tmp)
+                free(tmp);
+            free(line);
+            line = get_next_line(mapInfo->Fd);
     }
     return ret;
 }
@@ -35,10 +42,12 @@ char **malloc2D(t_mapInfo *mapInfo)
     
     ret = malloc(mapInfo->height * sizeof(char*) + 1);
     if(!ret)
-        ft_printf("Malloc Error, free & exit");
+        error("malloc", mapInfo);
     while(index.i < mapInfo->height)
     {
         ret[index.i] = malloc(getLenTillChar(mapInfo->map1D + index.j, '\n') + 1);
+        if(!ret[index.i])
+            error("malloc", mapInfo); 
         index.j += getLenTillChar(mapInfo->map1D + index.j, '\n') + 1;
         index.i++;
     }
