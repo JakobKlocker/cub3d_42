@@ -13,14 +13,13 @@ SRCS = 	main.c	\
 SRCSDIR			:= ./srcs/
 SRC			:= $(addprefix ${SRCSDIR}, ${SRCS})
 
-
-CC =	cc
-
-#CFLAGS =	-Wall -Wextra -Werror
-
 OBJSDIR	:= ./objs/
 OBJS	:= ${SRCS:.c=.o}
 OBJ		:= $(addprefix ${SRCSDIR}, ${OBJS})
+
+CC =	cc
+#CFLAGS =	-Wall -Wextra -Werror
+
 
 all :		$(NAME)
 
