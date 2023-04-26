@@ -33,7 +33,7 @@ $(NAME) :
 
 clean :		
 		(cd libft && make fclean)
-		rm -f $(OBJS)
+		rm -f $(OBJ)
 		rm -f libft.a
 	
 
