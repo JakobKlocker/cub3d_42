@@ -6,7 +6,7 @@
 /*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/05 14:38:55 by jklocker          #+#    #+#             */
-/*   Updated: 2022/10/11 14:54:08 by jklocker         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:58:38 by jklocker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+int    				ft_strcmp(char *s1, char *s2);
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
 void				*ft_calloc(size_t nmemb, size_t size);

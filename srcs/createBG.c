@@ -16,7 +16,7 @@ void createSky(t_mapInfo *mapInfo)
         index.j = 0;
         while(index.j < mapInfo->screen.width)
         {
-            mlx_pixel_put(mapInfo->mlx.mlx, mapInfo->mlx.win, index.j, index.i, color);
+            img_pxl_put(&mapInfo->img, index.j, index.i, color);
             index.j++;
         }
         index.i++;
@@ -35,7 +35,7 @@ void createFloor(t_mapInfo *mapInfo)
         index.j = 0;
         while(index.j < mapInfo->screen.width)
         {
-            mlx_pixel_put(mapInfo->mlx.mlx, mapInfo->mlx.win, index.j, index.i, color);
+            img_pxl_put(&mapInfo->img, index.j, index.i, color);
             index.j++;
         }
         index.i++;

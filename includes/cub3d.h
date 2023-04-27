@@ -9,10 +9,19 @@
 #include "../libft/ft_printf.h"
 #include "../libft/get_next_line_bonus.h"
 #include "mlx.h"
+# include <X11/keysym.h>
 
-#define ScreenHeight 1240
-#define ScreenWidth 1080
+#define ScreenHeight 720
+#define ScreenWidth 1280
 
+typedef struct s_img
+{
+	void    *img;
+	char    *addr;
+   int                    bpp;
+    int                    size_line;
+    int                    endian;
+} t_img;
 
 typedef struct s_time
 {
@@ -41,30 +50,7 @@ typedef struct s_mlx{
     void *win;
 } t_mlx;
 
-typedef struct s_mapInfo{
-    int Fd;
-    int height;
-    char *map1D;
-    char **map2D;
-    char *mapName;
-    char *NTexture;
-    char *ETexture;
-    char *STexture;
-    char *WTexture;
-    char **FColor;
-    char **CColor;
-    t_screen screen;
-    t_player player;
-    t_mlx mlx;
-} t_mapInfo;
-
-typedef struct s_index{
-    int i;
-    int j;
-    int k;
-} t_index;
-
-typedef struct s_rayCamInfo
+typedef struct s_rayInfo
 {
     double posX;
     double posY;
@@ -80,6 +66,8 @@ typedef struct s_rayCamInfo
     double perpWallDist;
     double planeX;
     double planeY;
+    double oldDirX;
+    double oldPlaneX;
     int mapX;
     int mapY;
     int hit;
@@ -89,7 +77,33 @@ typedef struct s_rayCamInfo
     int lineHeight;
     int drawStart;
     int drawEnd;
-} t_rayCamInfo;
+} t_rayInfo;
+
+typedef struct s_mapInfo{
+    int Fd;
+    int height;
+    char *map1D;
+    char **map2D;
+    char *mapName;
+    char *NTexture;
+    char *ETexture;
+    char *STexture;
+    char *WTexture;
+    char **FColor;
+    char **CColor;
+    t_screen screen;
+    t_player player;
+    t_rayInfo rayInfo;
+    t_mlx mlx;
+    t_img img;
+} t_mapInfo;
+
+typedef struct s_index{
+    int i;
+    int j;
+    int k;
+} t_index;
+
 
 //mallocMap.c
 char *malloc1D(t_mapInfo *mapInfo);
@@ -122,12 +136,19 @@ void getPlayerCordinates(t_mapInfo *mapInfo, t_player *player);
 
 //mlxCalls.c
 void openWindow(t_mapInfo *mapInfo);
+void mlxLoop(t_mapInfo *mapInfo);
 
-//rayCasting tmp
-void initRayInfo(int x, t_rayCamInfo *rayInfo, t_player *player, t_mapInfo *mapInfo);
-void prepDDA(t_mapInfo *mapInfo, t_player *player);
+//rayCasting.C
+void rayCasting(t_mapInfo *mapInfo);
+void calcStep(t_rayInfo *rayInfo);
+void calcDist(t_mapInfo *mapInfo, t_player *player, t_rayInfo *rayInfo);
+void DDAExec(t_mapInfo *mapInfo, t_player *player, t_rayInfo *rayInfo);
+
+//rayCasting_1.c
+void initRayInfo(t_rayInfo *rayInfo, t_player *player, t_mapInfo *mapInfo);
+void initRayInfoLoop(int x, t_rayInfo *rayInfo, t_player *player, t_mapInfo *mapInfo);
 void drawLine(t_mapInfo *mapInfo, int x, int drawStart, int drawEnd);
-
+void    img_pxl_put(t_img *img, int x, int y, int color);
 
 //createBG.c
 int encodeRGB(unsigned char red, unsigned char green, unsigned char blue);

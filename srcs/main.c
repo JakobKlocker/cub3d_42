@@ -3,8 +3,6 @@
 int main(int argc, char **argv)
 {
     t_mapInfo mapInfo;
-    t_player player;
-
     if(argc != 2)
     {
         ft_printf("Wrong amount of Arguments.\n");
@@ -15,8 +13,9 @@ int main(int argc, char **argv)
     mapInfo.Fd = openMap(mapInfo.mapName, &mapInfo);
     getMapInfo(&mapInfo);
     allMapChecks(&mapInfo);
-    getPlayerCordinates(&mapInfo, &player);
+    getPlayerCordinates(&mapInfo, &mapInfo.player);
     openWindow(&mapInfo);
-    createBG(&mapInfo);
-    DDA(&mapInfo, &player);
+    initRayInfo(&mapInfo.rayInfo, &mapInfo.player, &mapInfo);
+    rayCasting(&mapInfo);
+    mlxLoop(&mapInfo);
 }

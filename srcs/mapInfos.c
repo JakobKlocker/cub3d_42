@@ -92,4 +92,6 @@ void initMapInfo(t_mapInfo *mapInfo, char *mapName)
     mapInfo->WTexture = NULL;
     mapInfo->FColor = NULL;
     mapInfo->CColor = NULL;
+    mapInfo->mlx.mlx = NULL;
+    mapInfo->mlx.win = NULL;
 }

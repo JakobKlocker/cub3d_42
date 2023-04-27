@@ -8,7 +8,8 @@ SRCS = 	main.c	\
 		mapInfos.c \
 		mapInfos_1.c \
 		mlxCalls.c \
-		rayCasting.c
+		rayCasting.c \
+		errorFree.c
 
 SRCSDIR			:= ./srcs/
 SRC			:= $(addprefix ${SRCSDIR}, ${SRCS})

@@ -6,7 +6,7 @@ SRC = ft_atoi.c ft_bzero.c ft_calloc.c ft_isalnum.c ft_isalpha.c ft_isascii.c ft
 		ft_strtrim.c ft_substr.c ft_tolower.c ft_toupper.c \
 		char_found.c get_var_len.c hex_big_found.c hex_found.c init_flags.c int_found_2.c int_found.c \
 		ft_printf.c print_hex_p.c print_nbr.c ptr_found.c str_found.c u_int_found_2.c u_int_found.c \
-		get_next_line_bonus.c get_next_line_utils_bonus.c 
+		get_next_line_bonus.c get_next_line_utils_bonus.c ft_strcmp.c
 
 OBJ = ft_atoi.o ft_bzero.o ft_calloc.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft_isdigit.o ft_isprint.o \
 		ft_itoa.o ft_memchr.o ft_memcpy.o ft_memmove.o ft_memcmp.o ft_memset.o ft_putchar_fd.o ft_putendl_fd.o \
@@ -15,7 +15,7 @@ OBJ = ft_atoi.o ft_bzero.o ft_calloc.o ft_isalnum.o ft_isalpha.o ft_isascii.o ft
 		ft_strtrim.o ft_substr.o ft_tolower.o ft_toupper.o \
 		char_found.o get_var_len.o hex_big_found.o hex_found.o init_flags.o int_found_2.o int_found.o \
 		ft_printf.o print_hex_p.o print_nbr.o ptr_found.o str_found.o u_int_found_2.o u_int_found.o \
-		get_next_line_bonus.o get_next_line_utils_bonus.o 
+		get_next_line_bonus.o get_next_line_utils_bonus.o ft_strcmp.o
 
 SRC_B = ft_lstadd_back.c ft_lstadd_front.c ft_lstclear.c ft_lstdelone.c ft_lstiter.c ft_lstlast.c \
 		ft_lstmap.c ft_lstnew.c ft_lstsize.c
