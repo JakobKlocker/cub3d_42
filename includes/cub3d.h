@@ -14,6 +14,27 @@
 #define ScreenHeight 720
 #define ScreenWidth 1280
 
+#define texWidth 64
+#define texHeight 64
+
+typedef struct s_addr
+{
+    char *img;
+    int bpp;
+    int sizeLine;
+    int endian;
+} t_addr;
+
+typedef struct s_texture
+{
+    t_addr addr;
+    void *img;
+    char *path;
+    int width;
+    int height;
+
+} t_texture;
+
 typedef struct s_img
 {
 	void    *img;
@@ -77,6 +98,12 @@ typedef struct s_rayInfo
     int lineHeight;
     int drawStart;
     int drawEnd;
+    int texX;
+    int texY;
+    double wallX;
+    double step;
+    double texPos;
+    unsigned int color;
 } t_rayInfo;
 
 typedef struct s_mapInfo{
@@ -96,6 +123,10 @@ typedef struct s_mapInfo{
     t_rayInfo rayInfo;
     t_mlx mlx;
     t_img img;
+    t_texture N;
+    t_texture S;
+    t_texture E;
+    t_texture W;
 } t_mapInfo;
 
 typedef struct s_index{
@@ -133,6 +164,7 @@ void initMapInfo(t_mapInfo *mapInfo, char *mapName);
 
 //mapInfos_1.c
 void getPlayerCordinates(t_mapInfo *mapInfo, t_player *player);
+void setSpawnDir(t_player *player, t_rayInfo *rayInfo);
 
 //mlxCalls.c
 void openWindow(t_mapInfo *mapInfo);
@@ -143,12 +175,14 @@ void rayCasting(t_mapInfo *mapInfo);
 void calcStep(t_rayInfo *rayInfo);
 void calcDist(t_mapInfo *mapInfo, t_player *player, t_rayInfo *rayInfo);
 void DDAExec(t_mapInfo *mapInfo, t_player *player, t_rayInfo *rayInfo);
+void calcText(t_mapInfo *mapInfo, t_rayInfo *rayInfo, int x);
 
 //rayCasting_1.c
 void initRayInfo(t_rayInfo *rayInfo, t_player *player, t_mapInfo *mapInfo);
 void initRayInfoLoop(int x, t_rayInfo *rayInfo, t_player *player, t_mapInfo *mapInfo);
 void drawLine(t_mapInfo *mapInfo, int x, int drawStart, int drawEnd);
 void    img_pxl_put(t_img *img, int x, int y, int color);
+t_texture* selectTexture(t_mapInfo *mapInfo, t_rayInfo *rayInfo);
 
 //createBG.c
 int encodeRGB(unsigned char red, unsigned char green, unsigned char blue);
@@ -162,6 +196,10 @@ void error(char *error, t_mapInfo *mapInfo);
 void freeMlx(t_mapInfo *mapInfo);
 void freeExit(t_mapInfo *mapInfo);
 
+//textures.c
+t_texture openTexture(t_mapInfo *mapInfo, char *path);
+void openAllTextures(t_mapInfo *mapInfo);
+unsigned int getColorPixel(t_texture tex, int y, int x);
 
 
 #endif

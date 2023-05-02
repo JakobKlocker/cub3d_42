@@ -12,7 +12,7 @@ void rayCasting(t_mapInfo *mapInfo)
             calcStep(&mapInfo->rayInfo);
             DDAExec(mapInfo, &mapInfo->player, &mapInfo->rayInfo);
             calcDist(mapInfo, &mapInfo->player, &mapInfo->rayInfo);
-            drawLine(mapInfo, x, mapInfo->rayInfo.drawStart, mapInfo->rayInfo.drawEnd);
+            calcText(mapInfo, &mapInfo->rayInfo, x);
             x++;
         }
         mlx_put_image_to_window(mapInfo->mlx.mlx, mapInfo->mlx.win, mapInfo->img.img, 0, 0);
@@ -58,6 +58,34 @@ void calcDist(t_mapInfo *mapInfo, t_player *player, t_rayInfo *rayInfo)
         rayInfo->drawStart = 0;
     if(rayInfo->drawEnd > mapInfo->screen.height)
         rayInfo->drawEnd = mapInfo->screen.height - 1;
+}
+
+void calcText(t_mapInfo *mapInfo, t_rayInfo *rayInfo, int x)
+{
+    if(rayInfo->side == 0)
+        rayInfo->wallX = rayInfo->posY + rayInfo->perpWallDist * rayInfo->rayDirY;
+    else
+        rayInfo->wallX = rayInfo->posX + rayInfo->perpWallDist * rayInfo->rayDirX;
+
+    rayInfo->wallX -= floor(rayInfo->wallX);
+    rayInfo->texX = (int)(rayInfo->wallX * (double)texWidth);
+
+    if(rayInfo->side == 0 && rayInfo->rayDirX > 0)
+        rayInfo->texX = texWidth - rayInfo->texX - 1;
+    if(rayInfo->side == 1 && rayInfo->rayDirX < 0)
+        rayInfo->texX = texWidth - rayInfo->texX - 1;
+    rayInfo->step = 1.0 * texHeight / rayInfo->lineHeight;
+    
+    rayInfo->texPos = (rayInfo->drawStart - mapInfo->screen.height / 2 + rayInfo->lineHeight / 2) * rayInfo->step;
+    int y = rayInfo->drawStart;
+    while(y < rayInfo->drawEnd)
+    {
+        rayInfo->texY = (int)rayInfo->texPos & (texHeight - 1);
+        rayInfo->texPos += rayInfo->step;
+        rayInfo->color = getColorPixel(*selectTexture(mapInfo, rayInfo),rayInfo->texY, rayInfo->texX);
+        img_pxl_put(&mapInfo->img, x, y, rayInfo->color);
+        y++;
+    }
 }
 
 void DDAExec(t_mapInfo *mapInfo, t_player *player, t_rayInfo *rayInfo)

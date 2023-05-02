@@ -15,7 +15,9 @@ int main(int argc, char **argv)
     allMapChecks(&mapInfo);
     getPlayerCordinates(&mapInfo, &mapInfo.player);
     openWindow(&mapInfo);
-    initRayInfo(&mapInfo.rayInfo, &mapInfo.player, &mapInfo);
+    setSpawnDir(&mapInfo.player, &mapInfo.rayInfo);
+    //initRayInfo(&mapInfo.rayInfo, &mapInfo.player, &mapInfo);
+    openAllTextures(&mapInfo);
     rayCasting(&mapInfo);
     mlxLoop(&mapInfo);
 }

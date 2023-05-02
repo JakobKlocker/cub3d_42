@@ -1,10 +1,10 @@
-NO         ./path_to_the_north_texture
+NO         ../img/mossy2.xpm
 
 
 
 
 
-                           SO                  ./path_to_the_south_texture
+                           SO                  ./../img/colorstone.xpm
 
 
 
@@ -13,10 +13,10 @@ NO         ./path_to_the_north_texture
 
 
 
-            WE              ./path_to_the_west_texture
+            WE              ../img/wood.xpm
 
 
-EA ./path_to_the_east_texture
+EA ../img/mossy.xpm
 
 F 30,30,30
 
@@ -28,7 +28,7 @@ C 180,180,180
 11111111111110111111111111111
 11111111111110011111111111111
 11000000111111011100000010001
-100000001   1000011100W0010001
+100000001   1000011100S001001
 100000001   10001101010010001
 110000011111110111110111100111
 11110111 1110101 101111010001

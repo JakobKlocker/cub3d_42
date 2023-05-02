@@ -9,6 +9,7 @@ SRCS = 	main.c	\
 		mapInfos_1.c \
 		mlxCalls.c \
 		rayCasting.c \
+		rayCasting_utils.c \
 		errorFree.c
 
 SRCSDIR			:= ./srcs/
@@ -29,7 +30,7 @@ $(NAME) :
 		cp libft/libft.a libft.a
 		$(CC) -c $(SRC)
 		mv *.o ./srcs/
-		$(CC) -o $(NAME) $(OBJ) libft.a mlx/libmlx_Linux.a -lXext -lX11
+		$(CC) -o $(NAME) $(OBJ) libft.a mlx/libmlx_Linux.a -lXext -lX11 -lm
 
 clean :		
 		(cd libft && make fclean)

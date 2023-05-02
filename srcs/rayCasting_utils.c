@@ -1,12 +1,13 @@
 #include "../includes/cub3d.h"
 
-void initRayInfo(t_rayInfo *rayInfo, t_player *player, t_mapInfo *mapInfo)
-{
-    rayInfo->dirX = 1;
-    rayInfo->dirY = 0;
-    rayInfo->planeX = 0;
-    rayInfo->planeY = 0.66;
-}
+// void initRayInfo(t_rayInfo *rayInfo, t_player *player, t_mapInfo *mapInfo)
+// {
+//     //setSpawnDir(player);
+//     rayInfo->dirX = -1; //player->dirX;
+//     rayInfo->dirY = 0; //player->dirY;
+//     rayInfo->planeX = 0;
+//     rayInfo->planeY = -0.66;
+// }
 
 void initRayInfoLoop(int x, t_rayInfo *rayInfo, t_player *player, t_mapInfo *mapInfo)
 {
@@ -28,13 +29,16 @@ void initRayInfoLoop(int x, t_rayInfo *rayInfo, t_player *player, t_mapInfo *map
     rayInfo->hit = 0;
 }
 
-void drawLine(t_mapInfo *mapInfo, int x, int drawStart, int drawEnd)
+t_texture* selectTexture(t_mapInfo *mapInfo, t_rayInfo *rayInfo)
 {
-    while(drawStart != drawEnd)
-    {
-        img_pxl_put(&mapInfo->img, x, drawStart, 0xAA0000);
-        drawStart++;
-    }
+    if(rayInfo->side == 1 &&  rayInfo->rayDirY < 0) 
+        return (&mapInfo->N);
+    else if(rayInfo->side == 1 &&  rayInfo->rayDirY > 0)
+        return (&mapInfo->S);
+    else if(rayInfo->side == 0 &&  rayInfo->rayDirX < 0)
+        return (&mapInfo->W);
+    else
+        return (&mapInfo->E);
 }
 
 void    img_pxl_put(t_img *img, int x, int y, int color)
