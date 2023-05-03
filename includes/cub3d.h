@@ -1,205 +1,224 @@
 #ifndef CUB3D_H
-#define CUB3D_H
+# define CUB3D_H
 
-#include <math.h>
-#include <fcntl.h>
-#include <stdlib.h>
-#include <string.h>
-#include "../libft/libft.h"
-#include "../libft/ft_printf.h"
-#include "../libft/get_next_line_bonus.h"
-#include "mlx.h"
+# include "../libft/ft_printf.h"
+# include "../libft/get_next_line_bonus.h"
+# include "../libft/libft.h"
+# include "mlx.h"
 # include <X11/keysym.h>
+# include <fcntl.h>
+# include <math.h>
+# include <stdlib.h>
+# include <string.h>
 
-#define ScreenHeight 720
-#define ScreenWidth 1280
+# define SCREENHEIGHT 720
+# define SCREENWIDTH 1280
 
-#define texWidth 64
-#define texHeight 64
+# define TEXWIDTH 1024
+# define TEXHEIGHT 1024
 
 typedef struct s_addr
 {
-    char *img;
-    int bpp;
-    int sizeLine;
-    int endian;
-} t_addr;
+	char			*img;
+	int				bpp;
+	int				sizeline;
+	int				endian;
+}					t_addr;
 
 typedef struct s_texture
 {
-    t_addr addr;
-    void *img;
-    char *path;
-    int width;
-    int height;
+	t_addr			addr;
+	void			*img;
+	char			*path;
+	int				width;
+	int				height;
 
-} t_texture;
+}					t_texture;
 
 typedef struct s_img
 {
-	void    *img;
-	char    *addr;
-   int                    bpp;
-    int                    size_line;
-    int                    endian;
-} t_img;
+	void			*img;
+	char			*addr;
+	int				bpp;
+	int				size_line;
+	int				endian;
+}					t_img;
 
-typedef struct s_time
+// typedef struct s_time
+// {
+// 	double			time;
+// 	double			oldTime;
+// }					t_time;
+
+typedef struct s_player
 {
-    double time;
-    double oldTime;
-} t_time;
-
-typedef struct s_player{
-    double posX;
-    double posY;
-    char spawnDir;
-    double dirX;
-    double dirY;
-    double planeX;
-    double planeY;
-} t_player;
+	double			pos_x;
+	double			pos_y;
+	char			spawn_dir;
+	double			dir_x;
+	double			dir_y;
+	double			plane_x;
+	double			plane_y;
+}					t_player;
 
 typedef struct s_screen
 {
-    int width;
-    int height;
-} t_screen;
+	int				width;
+	int				height;
+}					t_screen;
 
-typedef struct s_mlx{
-    void *mlx;
-    void *win;
-} t_mlx;
-
-typedef struct s_rayInfo
+typedef struct s_mlx
 {
-    double posX;
-    double posY;
-    double camera;
-    double dirX;
-    double dirY;
-    double rayDirX;
-    double rayDirY;
-    double sideDistX;
-    double sideDistY;
-    double deltaDistX;
-    double deltaDistY;
-    double perpWallDist;
-    double planeX;
-    double planeY;
-    double oldDirX;
-    double oldPlaneX;
-    int mapX;
-    int mapY;
-    int hit;
-    int side;
-    int stepX;
-    int stepY;
-    int lineHeight;
-    int drawStart;
-    int drawEnd;
-    int texX;
-    int texY;
-    double wallX;
-    double step;
-    double texPos;
-    unsigned int color;
-} t_rayInfo;
+	void			*mlx;
+	void			*win;
+}					t_mlx;
 
-typedef struct s_mapInfo{
-    int Fd;
-    int height;
-    char *map1D;
-    char **map2D;
-    char *mapName;
-    char *NTexture;
-    char *ETexture;
-    char *STexture;
-    char *WTexture;
-    char **FColor;
-    char **CColor;
-    t_screen screen;
-    t_player player;
-    t_rayInfo rayInfo;
-    t_mlx mlx;
-    t_img img;
-    t_texture N;
-    t_texture S;
-    t_texture E;
-    t_texture W;
-} t_mapInfo;
+typedef struct s_rayinfo
+{
+	double			pos_x;
+	double			pos_y;
+	double			camera;
+	double			dir_x;
+	double			dir_y;
+	double			raydir_x;
+	double			raydir_y;
+	double			sidedistx;
+	double			sidedisty;
+	double			deltadistx;
+	double			deltadisty;
+	double			perpwalldist;
+	double			plane_x;
+	double			plane_y;
+	double			olddir_x;
+	double			oldplane_x;
+	int				mapx;
+	int				mapy;
+	int				hit;
+	int				side;
+	int				stepx;
+	int				stepy;
+	int				lineheight;
+	int				drawstart;
+	int				drawend;
+	int				texx;
+	int				texy;
+	double			wallx;
+	double			step;
+	double			texpos;
+	unsigned int	color;
+}					t_rayinfo;
 
-typedef struct s_index{
-    int i;
-    int j;
-    int k;
-} t_index;
+typedef struct s_mapInfo
+{
+	int				fd;
+	int				height;
+	char			*map1d;
+	char			**map2d;
+	char			*mapname;
+	char			*ntexture;
+	char			*etexture;
+	char			*stexture;
+	char			*wtexture;
+	char			**fcolor;
+	char			**ccolor;
+	t_screen		screen;
+	t_player		player;
+	t_rayinfo		rayinfo;
+	t_mlx			mlx;
+	t_img			img;
+	t_texture		n;
+	t_texture		s;
+	t_texture		e;
+	t_texture		w;
+}					t_mapInfo;
 
+typedef struct s_index
+{
+	int				i;
+	int				j;
+	int				k;
+}					t_index;
 
 //mallocMap.c
-char *malloc1D(t_mapInfo *mapInfo);
-char **malloc2D(t_mapInfo *mapInfo);
-void copy2DMap(t_mapInfo *mapInfo);
-int getLenTillChar(char* line, char c);
-void print2DMap(t_mapInfo *mapInfo);
+char				*malloc_1d(t_mapInfo *mapInfo);
+char				**malloc_2d(t_mapInfo *mapInfo);
+void				copy_2d_map(t_mapInfo *mapInfo);
+int					get_len_till_char(char *line, char c);
+void				print_2d_map(t_mapInfo *mapInfo);
+
+//mallocMap_1.c
+char				*malloc_1d_util(t_mapInfo *mapInfo, char **line);
 
 //mapChecks.c
-void validCharacters(t_mapInfo *mapInfo);
-void validMapExtention(char *mapName, t_mapInfo *mapInfo);
-void wallTopBottom(t_mapInfo *mapInfo);
-void wallCheck(t_mapInfo *mapInfo);
-void wallCheckSurrounding(char **map2D, t_index *index, t_mapInfo *mapInfo);
+void				valid_characters(t_mapInfo *mapInfo);
+void				valid_map_extention(char *mapname, t_mapInfo *mapInfo);
+void				wall_top_bottom(t_mapInfo *mapInfo);
+void				wall_check(t_mapInfo *mapInfo);
+void				wall_check_surrounding(char **map2d, t_index *index,
+						t_mapInfo *mapInfo);
 
 //mapChecks_1.c
-void colorCheck(t_mapInfo *mapInfo);
-void isRGB(char *str, t_mapInfo *mapInfo);
-void allMapChecks(t_mapInfo *mapInfo);
+void				color_check(t_mapInfo *mapInfo);
+void				is_rgb(char *str, t_mapInfo *mapInfo);
+void				all_map_checks(t_mapInfo *mapInfo);
 
 //mapInfos.c
-int openMap(char *mapName, t_mapInfo *mapInfo);
-void addMapInfos(char **split, t_mapInfo *mapInfo);
-void addMap(t_mapInfo *mapInfo);
-int getMapInfo(t_mapInfo *mapInfo);
-void initMapInfo(t_mapInfo *mapInfo, char *mapName);
+int					open_map(char *mapname, t_mapInfo *mapInfo);
+void				add_map_infos(char **split, t_mapInfo *mapInfo);
+void				add_map(t_mapInfo *mapInfo);
+void				get_map_info(t_mapInfo *mapInfo);
+void				init_map_info(t_mapInfo *mapInfo, char *mapname);
 
 //mapInfos_1.c
-void getPlayerCordinates(t_mapInfo *mapInfo, t_player *player);
-void setSpawnDir(t_player *player, t_rayInfo *rayInfo);
+void				get_player_cordinates(t_mapInfo *mapInfo, t_player *player);
+void				set_spawn_dir(t_player *player, t_rayinfo *rayinfo);
 
 //mlxCalls.c
-void openWindow(t_mapInfo *mapInfo);
-void mlxLoop(t_mapInfo *mapInfo);
+void				open_window(t_mapInfo *mapInfo);
+int					move_hook(int key, t_mapInfo *mapInfo);
+void				mlx_loop_own(t_mapInfo *mapInfo);
+
+//moveHooks.c
+void				move_hook_right(int key, t_rayinfo *rayinfo,
+						t_mapInfo *mapInfo);
+void				move_hook_left(int key, t_rayinfo *rayinfo,
+						t_mapInfo *mapInfo);
+void				move_hook_updown(int key, t_rayinfo *rayinfo,
+						t_mapInfo *mapInfo);
 
 //rayCasting.C
-void rayCasting(t_mapInfo *mapInfo);
-void calcStep(t_rayInfo *rayInfo);
-void calcDist(t_mapInfo *mapInfo, t_player *player, t_rayInfo *rayInfo);
-void DDAExec(t_mapInfo *mapInfo, t_player *player, t_rayInfo *rayInfo);
-void calcText(t_mapInfo *mapInfo, t_rayInfo *rayInfo, int x);
+void				ray_casting(t_mapInfo *mapInfo);
+void				calc_step(t_rayinfo *rayinfo);
+void				calc_dist(t_mapInfo *mapInfo, t_player *player,
+						t_rayinfo *rayinfo);
+void				dda_exec(t_mapInfo *mapInfo, t_player *player,
+						t_rayinfo *rayinfo);
+void				calc_text(t_mapInfo *mapInfo, t_rayinfo *rayinfo, int x);
 
 //rayCasting_1.c
-void initRayInfo(t_rayInfo *rayInfo, t_player *player, t_mapInfo *mapInfo);
-void initRayInfoLoop(int x, t_rayInfo *rayInfo, t_player *player, t_mapInfo *mapInfo);
-void drawLine(t_mapInfo *mapInfo, int x, int drawStart, int drawEnd);
-void    img_pxl_put(t_img *img, int x, int y, int color);
-t_texture* selectTexture(t_mapInfo *mapInfo, t_rayInfo *rayInfo);
+//void initrayinfo(t_rayinfo *rayinfo, t_player *player, t_mapInfo *mapInfo);
+//void drawLine(t_mapInfo *mapInfo, int x, int drawstart, int drawend);
+void				init_ray_info_loop(int x, t_rayinfo *rayinfo,
+						t_player *player, t_mapInfo *mapInfo);
+void				img_pxl_put(t_img *img, int x, int y, int color);
+t_texture			*select_texture(t_mapInfo *mapInfo, t_rayinfo *rayinfo);
 
 //createBG.c
-int encodeRGB(unsigned char red, unsigned char green, unsigned char blue);
-void createFloor(t_mapInfo *mapInfo);
-void createSky(t_mapInfo *mapInfo);
-void createBG(t_mapInfo *mapInfo);
+int					encode_rgb(unsigned char red, unsigned char green,
+						unsigned char blue);
+void				create_floor(t_mapInfo *mapInfo);
+void				create_sky(t_mapInfo *mapInfo);
+void				create_bg(t_mapInfo *mapInfo);
 
 //errorFree.c
-void free2D(char **str);
-void error(char *error, t_mapInfo *mapInfo);
-void freeMlx(t_mapInfo *mapInfo);
-void freeExit(t_mapInfo *mapInfo);
+void				free_2d(char **str);
+void				error(char *error, t_mapInfo *mapInfo);
+void				free_mlx(t_mapInfo *mapInfo);
+int					free_exit(t_mapInfo *mapInfo);
 
 //textures.c
-t_texture openTexture(t_mapInfo *mapInfo, char *path);
-void openAllTextures(t_mapInfo *mapInfo);
-unsigned int getColorPixel(t_texture tex, int y, int x);
-
+t_texture			open_texture(t_mapInfo *mapInfo, char *path);
+void				open_all_textures(t_mapInfo *mapInfo);
+unsigned int		get_color_pixel(t_texture tex, int y, int x);
 
 #endif

@@ -10,7 +10,10 @@ SRCS = 	main.c	\
 		mlxCalls.c \
 		rayCasting.c \
 		rayCasting_utils.c \
-		errorFree.c
+		errorFree.c \
+		textures.c \
+		moveHooks.c \
+		mallocMap_1.c 
 
 SRCSDIR			:= ./srcs/
 SRC			:= $(addprefix ${SRCSDIR}, ${SRCS})
@@ -20,7 +23,7 @@ OBJS	:= ${SRCS:.c=.o}
 OBJ		:= $(addprefix ${SRCSDIR}, ${OBJS})
 
 CC =	cc
-#CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-Wall -Wextra -Werror
 
 
 all :		$(NAME)
@@ -30,7 +33,7 @@ $(NAME) :
 		cp libft/libft.a libft.a
 		$(CC) -c $(SRC)
 		mv *.o ./srcs/
-		$(CC) -o $(NAME) $(OBJ) libft.a mlx/libmlx_Linux.a -lXext -lX11 -lm
+		$(CC) -o $(NAME) $(OBJ) $(CFLAGS) libft.a mlx/libmlx_Linux.a -lXext -lX11 -lm
 
 clean :		
 		(cd libft && make fclean)

@@ -6,7 +6,7 @@
 /*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 11:47:22 by jklocker          #+#    #+#             */
-/*   Updated: 2023/04/20 10:00:15 by jklocker         ###   ########.fr       */
+/*   Updated: 2023/05/03 14:30:43 by jklocker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ char	*get_line_only(char *buffer)
 	}
 	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	ret = ft_calloc(i + 1, 1); //Changed to + 1 instead + 2 because dont want \n
+	ret = ft_calloc(i + 1, 1);
 	if (ret == NULL)
 		return (NULL);
 	while (buffer[j] && buffer[j] != '\n')
@@ -91,8 +91,6 @@ char	*get_line_only(char *buffer)
 		ret[j] = buffer[j];
 		j++;
 	}
-	// if (buffer[j] == '\n') 
-	// 	ret[j] = '0';
 	return (ret);
 }
 
