@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   createBG.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/08 14:20:36 by jklocker          #+#    #+#             */
+/*   Updated: 2023/05/08 14:20:37 by jklocker         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 int	encode_rgb(unsigned char red, unsigned char green, unsigned char blue)
@@ -11,8 +23,8 @@ void	create_sky(t_mapInfo *mapInfo)
 	int		color;
 
 	index.i = 0;
-	color = encode_rgb(ft_atoi(mapInfo->fcolor[0]), ft_atoi(mapInfo->fcolor[1]),
-			ft_atoi(mapInfo->fcolor[2]));
+	color = encode_rgb(ft_atoi(mapInfo->ccolor[0]), ft_atoi(mapInfo->ccolor[1]),
+			ft_atoi(mapInfo->ccolor[2]));
 	while (index.i < mapInfo->screen.height / 2)
 	{
 		index.j = 0;
@@ -31,8 +43,8 @@ void	create_floor(t_mapInfo *mapInfo)
 	int		color;
 
 	index.i = 0;
-	color = encode_rgb(ft_atoi(mapInfo->ccolor[0]), ft_atoi(mapInfo->ccolor[1]),
-			ft_atoi(mapInfo->ccolor[2]));
+	color = encode_rgb(ft_atoi(mapInfo->fcolor[0]), ft_atoi(mapInfo->fcolor[1]),
+			ft_atoi(mapInfo->fcolor[2]));
 	index.i = mapInfo->screen.height / 2;
 	while (index.i < mapInfo->screen.height)
 	{

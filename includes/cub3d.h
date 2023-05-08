@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/08 14:18:27 by jklocker          #+#    #+#             */
+/*   Updated: 2023/05/08 14:31:28 by jklocker         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
@@ -172,6 +184,7 @@ void				init_map_info(t_mapInfo *mapInfo, char *mapname);
 //mapInfos_1.c
 void				get_player_cordinates(t_mapInfo *mapInfo, t_player *player);
 void				set_spawn_dir(t_player *player, t_rayinfo *rayinfo);
+void				add_map_infos_1(t_mapInfo *mapInfo, int *i, char **split);
 
 //mlxCalls.c
 void				open_window(t_mapInfo *mapInfo);
@@ -215,6 +228,10 @@ void				free_2d(char **str);
 void				error(char *error, t_mapInfo *mapInfo);
 void				free_mlx(t_mapInfo *mapInfo);
 int					free_exit(t_mapInfo *mapInfo);
+
+//errorFree_1.c
+void				fd_free(t_mapInfo *mapInfo);
+int					malloc_check(void);
 
 //textures.c
 t_texture			open_texture(t_mapInfo *mapInfo, char *path);

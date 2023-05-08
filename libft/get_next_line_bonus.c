@@ -6,13 +6,13 @@
 /*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 11:47:22 by jklocker          #+#    #+#             */
-/*   Updated: 2023/05/03 14:30:43 by jklocker         ###   ########.fr       */
+/*   Updated: 2023/05/08 11:14:15 by jklocker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 //#include "get_next_line_utils.c"
-#define BUFFER_SIZE 1337
+#define BUFFER_SIZE 2
 
 //Main Calls
 char	*get_next_line(int fd)

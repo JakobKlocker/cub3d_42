@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   rayCasting.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/08 14:20:14 by jklocker          #+#    #+#             */
+/*   Updated: 2023/05/08 14:40:23 by jklocker         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void	ray_casting(t_mapInfo *mapInfo)
@@ -85,7 +97,7 @@ void	calc_text(t_mapInfo *mapInfo, t_rayinfo *rayinfo, int x)
 	rayinfo->texpos = (rayinfo->drawstart - mapInfo->screen.height / 2
 			+ rayinfo->lineheight / 2) * rayinfo->step;
 	y = rayinfo->drawstart - 1;
-	while (++y < rayinfo->drawend)
+	while (++y < rayinfo->drawend + 1)
 	{
 		rayinfo->texy = (int)rayinfo->texpos & (TEXHEIGHT - 1);
 		rayinfo->texpos += rayinfo->step;
@@ -111,7 +123,11 @@ void	dda_exec(t_mapInfo *mapInfo, t_player *player, t_rayinfo *rayinfo)
 			rayinfo->mapy += rayinfo->stepy;
 			rayinfo->side = 1;
 		}
-		if (mapInfo->map2d[rayinfo->mapy][rayinfo->mapx] == '1')
+		if (rayinfo->mapy <= 0 || rayinfo->mapy >= mapInfo->height
+			|| rayinfo->mapx < 0)
+			rayinfo->hit = 1;
+		else if (mapInfo->map2d[rayinfo->mapy][rayinfo->mapx] == '1'
+				|| mapInfo->map2d[rayinfo->mapy][rayinfo->mapx] == 0)
 			rayinfo->hit = 1;
 	}
 }

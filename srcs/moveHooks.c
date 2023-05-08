@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moveHooks.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/08 14:21:09 by jklocker          #+#    #+#             */
+/*   Updated: 2023/05/08 14:21:09 by jklocker         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void	move_hook_right(int key, t_rayinfo *rayinfo, t_mapInfo *mapInfo)
@@ -40,21 +52,21 @@ void	move_hook_updown(int key, t_rayinfo *rayinfo, t_mapInfo *mapInfo)
 {
 	if (key == XK_Up || key == XK_w)
 	{
-		if (mapInfo->map2d[(int)rayinfo->pos_y][(int)(rayinfo->pos_x
-			+ rayinfo->dir_x * 0.3)] != '1')
-			mapInfo->player.pos_x += rayinfo->dir_x * 0.2;
 		if (mapInfo->map2d[(int)(rayinfo->pos_y + rayinfo->dir_y
-				* 0.3)][(int)rayinfo->pos_x] != '1')
+				* 0.2)][(int)rayinfo->pos_x] != '1')
 			mapInfo->player.pos_y += rayinfo->dir_y * 0.2;
+		if (mapInfo->map2d[(int)rayinfo->pos_y][(int)(rayinfo->pos_x
+			+ rayinfo->dir_x * 0.2)] != '1')
+			mapInfo->player.pos_x += rayinfo->dir_x * 0.2;
 		ray_casting(mapInfo);
 	}
 	if (key == XK_Down || key == XK_s)
 	{
 		if (mapInfo->map2d[(int)rayinfo->pos_y][(int)(rayinfo->pos_x
-			- rayinfo->dir_x * 0.3)] != '1')
+			- rayinfo->dir_x * 0.2)] != '1')
 			mapInfo->player.pos_x -= rayinfo->dir_x * 0.2;
 		if (mapInfo->map2d[(int)(rayinfo->pos_y - rayinfo->dir_y
-				* 0.3)][(int)rayinfo->pos_x] != '1')
+				* 0.2)][(int)rayinfo->pos_x] != '1')
 			mapInfo->player.pos_y -= rayinfo->dir_y * 0.2;
 		ray_casting(mapInfo);
 	}

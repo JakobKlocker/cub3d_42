@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mapInfos.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/08 14:21:04 by jklocker          #+#    #+#             */
+/*   Updated: 2023/05/08 14:29:03 by jklocker         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 int	open_map(char *mapname, t_mapInfo *mapInfo)
@@ -16,24 +28,24 @@ void	add_map_infos(char **split, t_mapInfo *mapInfo)
 	t_index	index;
 
 	index.i = 0;
-	while (split[index.i])
-		index.i++;
-	if (index.i != 2)
-		error("identif", mapInfo);
-	if (ft_strcmp(split[0], "NO\0") == 0)
+	add_map_infos_1(mapInfo, &index.i, split);
+	if (!mapInfo->ntexture && ft_strcmp(split[0], "NO\0") == 0)
 		mapInfo->ntexture = ft_strdup(split[1]);
-	else if (ft_strcmp(split[0], "SO\0") == 0)
+	else if (!mapInfo->stexture && ft_strcmp(split[0], "SO\0") == 0)
 		mapInfo->stexture = ft_strdup(split[1]);
-	else if (ft_strcmp(split[0], "WE\0") == 0)
+	else if (!mapInfo->wtexture && ft_strcmp(split[0], "WE\0") == 0)
 		mapInfo->wtexture = ft_strdup(split[1]);
-	else if (ft_strcmp(split[0], "EA\0") == 0)
+	else if (!mapInfo->etexture && ft_strcmp(split[0], "EA\0") == 0)
 		mapInfo->etexture = ft_strdup(split[1]);
-	else if (ft_strcmp(split[0], "F\0") == 0)
+	else if (!mapInfo->fcolor && ft_strcmp(split[0], "F\0") == 0)
 		mapInfo->fcolor = ft_split(split[1], ',');
-	else if (ft_strcmp(split[0], "C\0") == 0)
+	else if (!mapInfo->ccolor && ft_strcmp(split[0], "C\0") == 0)
 		mapInfo->ccolor = ft_split(split[1], ',');
 	else
+	{
+		free_2d(split);
 		error("identif", mapInfo);
+	}
 	free_2d(split);
 }
 
@@ -55,7 +67,6 @@ void	add_map(t_mapInfo *mapInfo)
 	mapInfo->height = index.j;
 	mapInfo->map2d = malloc_2d(mapInfo);
 	copy_2d_map(mapInfo);
-	print_2d_map(mapInfo);
 }
 
 void	get_map_info(t_mapInfo *mapInfo)

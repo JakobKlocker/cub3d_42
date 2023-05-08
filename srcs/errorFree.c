@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   errorFree.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/08 14:20:43 by jklocker          #+#    #+#             */
+/*   Updated: 2023/05/08 14:20:44 by jklocker         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void	free_2d(char **str)
@@ -34,8 +46,7 @@ int	free_exit(t_mapInfo *mapInfo)
 		free_2d(mapInfo->fcolor);
 	if (mapInfo->ccolor)
 		free_2d(mapInfo->ccolor);
-	if (mapInfo->fd != -1)
-		close(mapInfo->fd);
+	fd_free(mapInfo);
 	free_mlx(mapInfo);
 	exit(1);
 	return (0);
@@ -46,11 +57,11 @@ void	destory_images(t_mapInfo *mapInfo)
 	if (mapInfo->n.img)
 		mlx_destroy_image(mapInfo->mlx.mlx, mapInfo->n.img);
 	if (mapInfo->e.img)
-		mlx_destroy_image(mapInfo->mlx.mlx, mapInfo->s.img);
-	if (mapInfo->s.img)
-		mlx_destroy_image(mapInfo->mlx.mlx, mapInfo->w.img);
-	if (mapInfo->w.img)
 		mlx_destroy_image(mapInfo->mlx.mlx, mapInfo->e.img);
+	if (mapInfo->s.img)
+		mlx_destroy_image(mapInfo->mlx.mlx, mapInfo->s.img);
+	if (mapInfo->w.img)
+		mlx_destroy_image(mapInfo->mlx.mlx, mapInfo->w.img);
 	if (mapInfo->img.img)
 		mlx_destroy_image(mapInfo->mlx.mlx, mapInfo->img.img);
 }
@@ -66,9 +77,6 @@ void	free_mlx(t_mapInfo *mapInfo)
 		free(mapInfo->mlx.mlx);
 	}
 }
-//if(mapInfo->mlx.mlx)
-//free mlx init here
-//free with mlx destory window
 
 void	error(char *error, t_mapInfo *mapInfo)
 {
@@ -80,15 +88,17 @@ void	error(char *error, t_mapInfo *mapInfo)
 		ft_printf("Error\n Only '0', '1', 'N', 'S', 'E', \
 		'W' or ' ' inside the map\n");
 	else if (ft_strcmp(error, "malloc") == 0)
-		ft_printf("Error\n malloc failed\n");
+		ft_printf("Error\nmalloc failed\n");
 	else if (ft_strcmp(error, "identif") == 0)
-		ft_printf("Error\n Invalid Map identifier\n");
+		ft_printf("Error\nInvalid Map identifier\n");
 	else if (ft_strcmp(error, ".cub") == 0)
-		ft_printf("Error\n Map name invalid, must end with .cub\n");
+		ft_printf("Error\nMap name invalid, must end with .cub\n");
 	else if (ft_strcmp(error, "open") == 0)
-		ft_printf("Error\n Couldn't open file\n");
+		ft_printf("Error\nCouldn't open file\n");
 	else if (ft_strcmp(error, "mlx") == 0)
-		ft_printf("Error\n Mlx function failed\n");
+		ft_printf("Error\nMlx function failed\n");
+	else if (ft_strcmp(error, "texsize") == 0)
+		ft_printf("Error\nTexture width or height wrong\n");
 	else
 		ft_printf("Error\n");
 	free_exit(mapInfo);

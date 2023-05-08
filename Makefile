@@ -11,6 +11,7 @@ SRCS = 	main.c	\
 		rayCasting.c \
 		rayCasting_utils.c \
 		errorFree.c \
+		errorFree_1.c \
 		textures.c \
 		moveHooks.c \
 		mallocMap_1.c 

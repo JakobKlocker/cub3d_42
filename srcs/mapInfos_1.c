@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mapInfos_1.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/08 14:21:01 by jklocker          #+#    #+#             */
+/*   Updated: 2023/05/08 14:29:15 by jklocker         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 void	get_player_cordinates(t_mapInfo *mapInfo, t_player *player)
@@ -53,5 +65,16 @@ void	set_spawn_dir(t_player *player, t_rayinfo *rayinfo)
 	{
 		rayinfo->dir_x = -1;
 		rayinfo->plane_y = -0.66;
+	}
+}
+
+void	add_map_infos_1(t_mapInfo *mapInfo, int *i, char **split)
+{
+	while (split[*i])
+		*i = *i + 1;
+	if (*i != 2)
+	{
+		free_2d(split);
+		error("identif", mapInfo);
 	}
 }

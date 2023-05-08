@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   textures.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/08 14:21:16 by jklocker          #+#    #+#             */
+/*   Updated: 2023/05/08 14:21:17 by jklocker         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 t_texture	open_texture(t_mapInfo *mapInfo, char *path)
@@ -8,6 +20,11 @@ t_texture	open_texture(t_mapInfo *mapInfo, char *path)
 			&ret.height);
 	if (!ret.img)
 		error("open", mapInfo);
+	if (ret.width != TEXWIDTH || ret.height != TEXHEIGHT)
+	{
+		mlx_destroy_image(mapInfo->mlx.mlx, ret.img);
+		error("texsize", mapInfo);
+	}
 	ret.path = path;
 	ret.addr.img = mlx_get_data_addr(ret.img, &ret.addr.bpp, &ret.addr.sizeline,
 			&ret.addr.endian);
