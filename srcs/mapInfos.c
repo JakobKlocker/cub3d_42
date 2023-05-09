@@ -6,7 +6,7 @@
 /*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:21:04 by jklocker          #+#    #+#             */
-/*   Updated: 2023/05/08 14:29:03 by jklocker         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:45:36 by jklocker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ void	add_map(t_mapInfo *mapInfo)
 		index.i++;
 	}
 	if (index.i == 0)
-		free_exit(mapInfo);
+		error("42hacker", mapInfo);
 	mapInfo->height = index.j;
 	mapInfo->map2d = malloc_2d(mapInfo);
 	copy_2d_map(mapInfo);
