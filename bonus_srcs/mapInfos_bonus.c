@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapInfos_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iengels <iengels@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:21:04 by jklocker          #+#    #+#             */
-/*   Updated: 2023/05/09 10:53:29 by iengels          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:58:15 by jklocker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ void	init_map_info(t_mapInfo *mapInfo, char *mapname)
 	mapInfo->w.img = NULL;
 	mapInfo->e.img = NULL;
 	mapInfo->img.img = NULL;
+	mapInfo->mini.map = NULL;
 	mapInfo->mini.bolean = 0;
 	mapInfo->previous = get_current_time();
 }

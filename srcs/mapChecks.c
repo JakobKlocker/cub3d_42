@@ -6,7 +6,7 @@
 /*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:20:57 by jklocker          #+#    #+#             */
-/*   Updated: 2023/05/08 14:20:57 by jklocker         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:16:00 by jklocker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	valid_characters(t_mapInfo *mapInfo)
 	while (index.i < mapInfo->height)
 	{
 		index.j = 0;
-		while (index.j != '\0')
+		while (mapInfo->map2d[index.i][index.j] != '\0')
 		{
 			cur = mapInfo->map2d[index.i][index.j];
 			if (cur != '0' && cur != '1' && cur != 'N' && cur != 'E'

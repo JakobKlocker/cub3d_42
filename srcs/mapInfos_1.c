@@ -6,7 +6,7 @@
 /*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:21:01 by jklocker          #+#    #+#             */
-/*   Updated: 2023/05/08 14:29:15 by jklocker         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:20:25 by jklocker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ void	get_player_cordinates(t_mapInfo *mapInfo, t_player *player)
 			c = mapInfo->map2d[index.i][index.j];
 			if (c == 'N' || c == 'E' || c == 'S' || c == 'W')
 			{
-				if (index.k != 0)
-					error("invChar", mapInfo);
 				player->pos_y = index.i;
 				player->pos_x = index.j;
 				player->spawn_dir = c;
@@ -38,6 +36,8 @@ void	get_player_cordinates(t_mapInfo *mapInfo, t_player *player)
 		}
 		index.i++;
 	}
+	if (index.k != 1)
+		error("invChar", mapInfo);
 }
 
 void	set_spawn_dir(t_player *player, t_rayinfo *rayinfo)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap_helper.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iengels <iengels@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 20:28:32 by iengels           #+#    #+#             */
-/*   Updated: 2023/05/09 13:37:43 by iengels          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:32:26 by jklocker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,10 @@ void	draw_mini_square(t_mini *m, int color, t_mapInfo *mI)
 		{
 			if (i == 0 || j == 0 || i == m->unit - 1 || j == m->unit - 1)
 				img_pxl_put(&mI->img, SCREENWIDTH - (m->x + j), SCREENHEIGHT
-						- (m->y + i), m->color_border);
+					- (m->y + i), m->color_border);
 			else
 				img_pxl_put(&mI->img, SCREENWIDTH - (m->x + j), SCREENHEIGHT
-						- (m->y + i), color);
+					- (m->y + i), color);
 			j++;
 		}
 		i++;

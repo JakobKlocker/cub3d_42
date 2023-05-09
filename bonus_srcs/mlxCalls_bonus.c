@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlxCalls_bonus.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iengels <iengels@student.42vienna.com>     +#+  +:+       +#+        */
+/*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:21:06 by jklocker          #+#    #+#             */
-/*   Updated: 2023/05/09 13:41:19 by iengels          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:32:37 by jklocker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,6 @@ void	mlx_loop_own(t_mapInfo *mapInfo)
 	mlx_hook(mapInfo->mlx.win, 2, 1L << 0, &move_hook, mapInfo);
 	mlx_hook(mapInfo->mlx.win, 17, 0, &free_exit, mapInfo);
 	mlx_hook(mapInfo->mlx.win, MotionNotify, PointerMotionMask, &my_mouse_hook,
-			mapInfo);
+		mapInfo);
 	mlx_loop(mapInfo->mlx.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: jklocker <jklocker@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:20:43 by jklocker          #+#    #+#             */
-/*   Updated: 2023/05/08 14:20:44 by jklocker         ###   ########.fr       */
+/*   Updated: 2023/05/09 15:22:49 by jklocker         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,14 @@ void	free_mlx(t_mapInfo *mapInfo)
 void	error(char *error, t_mapInfo *mapInfo)
 {
 	if (ft_strcmp(error, "RGB") == 0)
-		ft_printf("Error\n Invalid RGB Values\n");
+		ft_printf("Error\nInvalid RGB Values\n");
 	else if (ft_strcmp(error, "wall") == 0)
-		ft_printf("Error\n Map not surrounded by Walls\n");
+		ft_printf("Error\nMap not surrounded by Walls\n");
 	else if (ft_strcmp(error, "invChar") == 0)
-		ft_printf("Error\n Only '0', '1', 'N', 'S', 'E', \
-		'W' or ' ' inside the map\n");
+	{
+		ft_printf("Error\nOnly '0', '1', 'N', 'S', 'E',");
+		ft_printf(" 'W' or ' ' inside the map\n");
+	}
 	else if (ft_strcmp(error, "malloc") == 0)
 		ft_printf("Error\nmalloc failed\n");
 	else if (ft_strcmp(error, "identif") == 0)
