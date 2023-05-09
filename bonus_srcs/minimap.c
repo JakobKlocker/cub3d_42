@@ -6,7 +6,7 @@
 /*   By: iengels <iengels@student.42vienna.com>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 00:51:09 by iengels           #+#    #+#             */
-/*   Updated: 2023/05/09 12:12:26 by iengels          ###   ########.fr       */
+/*   Updated: 2023/05/09 13:36:52 by iengels          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void	minimap(t_mapInfo *mI)
 	if (mI->mini.bolean == 0)
 		mI->mini.map = create_equal_map(mI);
 	draw_map(&mI->mini, mI);
-	draw_crosshair(mI);
 	mlx_mouse_move(mI->mlx.mlx, mI->mlx.win, SCREENWIDTH / 2, SCREENHEIGHT / 2);
 	draw_player(&mI->mini, mI);
+	draw_crosshair(mI);
 }
