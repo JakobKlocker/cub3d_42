@@ -1,7 +1,5 @@
 # Cub3D
 
-![Cub3D](cub3d_screenshot.png)
-
 Cub3D is a 42-school project inspired by the famous game Wolfenstein 3D, developed using the C programming language and the [MinilibX](https://github.com/42Paris/minilibx-linux) library. The goal of this project is to create a simple 3D game engine capable of rendering a maze-like world and implementing basic raycasting techniques to simulate 3D visuals.
 
 ## Table of Contents
